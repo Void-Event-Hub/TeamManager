@@ -1,0 +1,114 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.19.3/owo-ui.xsd">
+    <components>
+        <flow-layout direction="vertical">
+            <children>
+                <label>
+                    <text>Party Invites</text>
+                    <shadow>true</shadow>
+
+                    <positioning type="relative">50,5</positioning>
+                </label>
+                <flow-layout direction="vertical" id="main-page">
+                    <children>
+                        <scroll direction="vertical">
+                            <flow-layout direction="vertical" id="player-container">
+                                <children>
+
+                                </children>
+                            </flow-layout>
+                            <sizing>
+                                <vertical method="fill">100</vertical>
+                                <horizontal method="fill">100</horizontal>
+                            </sizing>
+                        </scroll>
+                    </children>
+
+                    <surface>
+                        <flat>#77000000</flat>
+                        <outline>#FF121212</outline>
+                    </surface>
+
+                    <padding>
+                        <all>1</all>
+                    </padding>
+                    <margins>
+                        <all>15</all>
+                    </margins>
+
+                    <sizing>
+                        <vertical method="fill">70</vertical>
+                        <horizontal method="fill">75</horizontal>
+                    </sizing>
+                </flow-layout>
+
+                <!-- Button Container -->
+                <flow-layout direction="horizontal">
+                    <children>
+                        <button id="party-button">
+                            <text>Party</text>
+                            <tooltip-text>Your current Party</tooltip-text>
+                        </button>
+
+                        <box>
+                            <color>#FF696969</color>
+                            <sizing>
+                                <vertical method="fixed">16</vertical>
+                                <horizontal method="fixed">1</horizontal>
+                            </sizing>
+                            <margins>
+                                <horizontal>5</horizontal>
+                            </margins>
+                        </box>
+
+                        <button id="party-invites-button">
+                            <text>Party invites (?)</text>
+                            <tooltip-text>Incoming invites to parties</tooltip-text>
+                            <margins>
+                                <right>2</right>
+                            </margins>
+                        </button>
+
+                        <button id="team-switch-requests-button">
+                            <text>Team Switch Requests (?)</text>
+                            <tooltip-text>Incoming requests to switch teams</tooltip-text>
+                        </button>
+
+                        <box>
+                            <color>#FF696969</color>
+                            <sizing>
+                                <vertical method="fixed">16</vertical>
+                                <horizontal method="fixed">1</horizontal>
+                            </sizing>
+                            <margins>
+                                <horizontal>5</horizontal>
+                            </margins>
+                        </box>
+
+                        <button id="players-button">
+                            <text>Players</text>
+                        </button>
+                    </children>
+
+
+                    <padding>
+                        <all>6</all>
+                    </padding>
+
+                    <surface>
+                        <panel dark="true"/>
+                    </surface>
+                </flow-layout>
+
+            </children>
+
+            <vertical-alignment>center</vertical-alignment>
+            <horizontal-alignment>center</horizontal-alignment>
+
+            <!---->
+            <surface>
+                <vanilla-translucent/>
+            </surface>
+        </flow-layout>
+    </components>
+</owo-ui>
