@@ -3,8 +3,6 @@ package com.synthesyzer.teammanager.commands;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
-import com.synthesyzer.teammanager.data.party.Party;
-import com.synthesyzer.teammanager.data.party.PartyManager;
 import com.synthesyzer.teammanager.util.Messenger;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.scoreboard.Team;
@@ -26,7 +24,7 @@ public class AssignTeamsCommand {
                 .then(CommandManager.literal("assign").executes(AssignTeamsCommand::assignTeams)));
     }
 
-    public static int assignTeams(CommandContext<ServerCommandSource> context) {
+    private static int assignTeams(CommandContext<ServerCommandSource> context) {
         ServerWorld world = context.getSource().getWorld();
         ServerPlayerEntity executor = context.getSource().getPlayer();
 
@@ -40,7 +38,7 @@ public class AssignTeamsCommand {
             Messenger.sendMessage(executor, "Cleared scoreboard teams.");
         }
 
-        List<List<GameProfile>> players = getPlayersGroupedByParty(world);
+        List<List<GameProfile>> players = TMCommands.getPlayersGroupedByParty(world);
         Collections.shuffle(players);
         List<List<GameProfile>> teams = assignTeams(players, world.getScoreboard().getTeams().size());
 
@@ -90,29 +88,6 @@ public class AssignTeamsCommand {
         return Arrays.stream(teams).toList();
     }
 
-    /**
-     * returns a list of all players in the world, grouped by party.
-     * players that are not inside a party are grouped by themselves.
-     */
-    private static List<List<GameProfile>> getPlayersGroupedByParty(ServerWorld world) {
-        List<List<GameProfile>> players = new ArrayList<>(
-                PartyManager.getParties()
-                        .stream()
-                        .map(Party::toList)
-                        .toList()
-        );
-
-        List<GameProfile> partiedPlayers = players.stream().flatMap(List::stream).toList();
-
-        List<GameProfile> unPartiedPlayers = world.getPlayers().stream()
-                .map(PlayerEntity::getGameProfile)
-                .filter(player -> !partiedPlayers.contains(player))
-                .toList();
-
-        players.addAll(unPartiedPlayers.stream().map(List::of).toList());
-
-        return players;
-    }
 
     private static void emptyScoreboardTeams(ServerWorld world) {
         List<Team> teams = world.getScoreboard().getTeams().stream().toList();

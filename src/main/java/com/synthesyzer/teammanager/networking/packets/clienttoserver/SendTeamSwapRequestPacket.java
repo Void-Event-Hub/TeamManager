@@ -1,6 +1,7 @@
 package com.synthesyzer.teammanager.networking.packets.clienttoserver;
 
 import com.mojang.authlib.GameProfile;
+import com.synthesyzer.teammanager.commands.AllowSwapCommand;
 import com.synthesyzer.teammanager.data.teamswap.TeamSwapRequestManager;
 import com.synthesyzer.teammanager.networking.packets.servertoclient.ReceiveTeamSwapRequestPacket;
 import com.synthesyzer.teammanager.util.Messenger;
@@ -21,6 +22,11 @@ public record SendTeamSwapRequestPacket(UUID receiverId, String receiverName) {
             ServerWorld world = sender.getWorld();
             GameProfile receiverProfile = new GameProfile(message.receiverId(), message.receiverName());
             ServerPlayerEntity receiver = (ServerPlayerEntity) world.getPlayerByUuid(receiverProfile.getId());
+
+            if (!AllowSwapCommand.AllowSwaps) {
+                Messenger.sendError(sender, "Team swapping is disabled!");
+                return;
+            }
 
             if (receiver == null) {
                 Messenger.sendError(sender, "Player not found!");
@@ -49,6 +55,11 @@ public record SendTeamSwapRequestPacket(UUID receiverId, String receiverName) {
 
             if (TeamSwapRequestManager.getRequest(sender.getGameProfile(), receiver.getGameProfile()).isPresent()) {
                 Messenger.sendError(sender, "You already have a pending request!");
+                return;
+            }
+
+            if (TeamSwapRequestManager.getRequest(receiver.getGameProfile(), sender.getGameProfile()).isPresent()) {
+                Messenger.sendError(sender, "Player has already sent you a request!");
                 return;
             }
 

@@ -50,6 +50,13 @@ public record AcceptPartyInvitePacket(UUID senderId, String senderName, boolean 
             }
 
             PartyInviteManager.removeInvite(senderProfile, acceptor.getGameProfile());
+
+            if (!message.accepted()) {
+                Messenger.sendError(acceptor, "Invite declined!");
+                Messenger.sendMessage(sender, acceptor.getGameProfile().getName() + " declined your invite!");
+                return;
+            }
+
             PartyManager.addMember(senderProfile, acceptor.getGameProfile());
             Party party = PartyManager.getParty(senderProfile);
             List<PlayerEntity> members = party.getMembers()

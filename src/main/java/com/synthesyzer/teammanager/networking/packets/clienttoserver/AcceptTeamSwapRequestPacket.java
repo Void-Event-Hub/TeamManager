@@ -1,6 +1,7 @@
 package com.synthesyzer.teammanager.networking.packets.clienttoserver;
 
 import com.mojang.authlib.GameProfile;
+import com.synthesyzer.teammanager.commands.AllowSwapCommand;
 import com.synthesyzer.teammanager.data.teamswap.TeamSwapRequestManager;
 import com.synthesyzer.teammanager.util.Messenger;
 import io.wispforest.owo.network.OwoNetChannel;
@@ -51,6 +52,11 @@ public record AcceptTeamSwapRequestPacket(UUID senderId, String senderName, bool
             }
 
             TeamSwapRequestManager.deleteRequest(sender.getGameProfile(), acceptor.getGameProfile());
+
+            if (!AllowSwapCommand.AllowSwaps) {
+                Messenger.sendError(acceptor, "Team swapping is disabled!");
+                return;
+            }
 
             if (message.accepted()) {
                 // confirmation message
