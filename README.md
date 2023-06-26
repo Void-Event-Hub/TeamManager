@@ -1,5 +1,5 @@
-# Synth's Team Manager
-A minecraft mod to manage scoreboard teams by giving players more power over team assignment, 
+# Team Manager
+A minecraft mod developed for **Void Event Hub** to manage scoreboard teams by giving players more power over team assignment, 
 making it easier to play with friends.
 
 ## User interface

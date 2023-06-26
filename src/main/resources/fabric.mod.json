@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "synths-team-manager",
+  "id": "team-manager",
   "version": "${version}",
 
-  "name": "Synth's Team Manager",
+  "name": "Team Manager",
   "description": "A minecraft mod to add player and admin team management to minecraft servers.",
   "authors": [
     "Synthesyzer"
