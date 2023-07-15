@@ -9,6 +9,7 @@ import com.synthesyzer.teammanager.networking.TMNetwork;
 import com.synthesyzer.teammanager.networking.packets.servertoclient.ReceivePartyInvitePacket;
 import com.synthesyzer.teammanager.networking.packets.servertoclient.ReceiveTeamSwapRequestPacket;
 import com.synthesyzer.teammanager.networking.packets.servertoclient.UpdatePartyPacket;
+import com.synthesyzer.teammanager.util.Messenger;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -21,6 +22,7 @@ public class PlayerJoinServerEvent {
         ServerEntityEvents.ENTITY_LOAD.register((entity, serverWorld) -> {
             if (entity instanceof ServerPlayerEntity player) {
                 handleLoadPlayerEntity(player, serverWorld);
+                Messenger.sendMessage(player, "§7Invite your friends to a party by pressing §eX§7. Players in your party will be assigned to the same team!");
             }
         });
     }

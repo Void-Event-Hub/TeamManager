@@ -5,7 +5,7 @@ import io.wispforest.owo.config.annotation.Config;
 import io.wispforest.owo.config.annotation.Modmenu;
 
 @Modmenu(modId = TeamManager.MOD_ID)
-@Config(name = "void-civilizations", wrapperName = "MyConfig")
+@Config(name = TeamManager.MOD_ID, wrapperName = "MyConfig")
 public class MyConfigModel {
 
     public TeamAssignStrategy teamAssignStrategy = TeamAssignStrategy.ROUND_ROBIN;
