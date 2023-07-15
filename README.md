@@ -7,7 +7,7 @@ Pressing **z** will open the user interface. The user interface has 2 main featu
 
 ### Parties
 Players can join each other into a party with up to 3 other players. Only the party leader can invite other players. 
-The party leader can also kick players from the party. All members can leave the party.
+The party leader can also kick players from the party. All members are able to leave the party.
 Being in a party guarantees that all party members will be delegated to the same scoreboard team.
 
 ### Swap Teams
