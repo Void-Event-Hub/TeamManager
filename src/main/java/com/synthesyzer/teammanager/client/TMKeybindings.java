@@ -13,7 +13,7 @@ public class TMKeybindings {
         openMenu = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                 "key.voidcivilizations.open_menu", // The translation key of the keybinding's name
                 InputUtil.Type.KEYSYM, // The type of the keybinding, KEYSYM for keyboard, MOUSE for mouse.
-                GLFW.GLFW_KEY_Z, // The keycode of the key
+                GLFW.GLFW_KEY_X, // The keycode of the key
                 "category.voidcivilizations.test" // The translation key of the keybinding's category.
         ));
     }
